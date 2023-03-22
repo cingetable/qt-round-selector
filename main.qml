@@ -45,7 +45,7 @@ Window {
                     text: "Show Selector"
                 }
                 Button {
-                    text: "Show"
+                    text: roundSelectorId.visible ? "Hide" : "Show"
 
                     onClicked: {
                        roundSelectorId.visible = !roundSelectorId.visible
@@ -58,6 +58,7 @@ Window {
         RoundSelector {
             id: roundSelectorId
             Layout.maximumWidth: 400
+
             OpacityAnimator {
                    target: roundSelectorId;
                    from: 0;
