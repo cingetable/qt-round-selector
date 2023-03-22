@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtCharts 2.15
 import "main.js" as Helper
-Item {
+Rectangle {
     property int sectorCount: 20
     property real holeValue: 0.4
 

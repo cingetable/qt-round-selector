@@ -18,11 +18,10 @@ Window {
         Rectangle {
             width: 200
             Layout.maximumWidth: 400
-            color: "lightblue"
+            color: "beige"
 
             onWidthChanged: {
                 sectorCountSliderId.width = width
-                holeSizeSliderId.width = width
             }
 
             Column {
@@ -31,6 +30,7 @@ Window {
                 }
                 Slider {
                     id: sectorCountSliderId
+                    value: 4
                     minimumValue: 1
                     maximumValue: 6
                     stepSize: 1
@@ -42,25 +42,37 @@ Window {
                 }
 
                 Label {
-                    text: "HoleSize"
+                    text: "Show Selector"
                 }
-                Slider {
-                    id: holeSizeSliderId
-                    minimumValue: 0
-                    maximumValue: 1
-                    wheelEnabled: true
+                Button {
+                    text: "Show"
 
-                    onValueChanged: {
-                        roundSelectorId.holeValue = value
+                    onClicked: {
+                       roundSelectorId.visible = !roundSelectorId.visible
                     }
                 }
             }
         }
 
+
         RoundSelector {
             id: roundSelectorId
             Layout.maximumWidth: 400
+            OpacityAnimator {
+                   target: roundSelectorId;
+                   from: 0;
+                   to: 1;
+                   duration: 500
+                   running: roundSelectorId.visible
+            }
 
+            OpacityAnimator {
+                   target: roundSelectorId;
+                   from: 1;
+                   to: 0;
+                   duration: 500
+                   running: !roundSelectorId.visible
+            }
         }
     }
 }
