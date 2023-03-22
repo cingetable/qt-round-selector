@@ -29,10 +29,16 @@ Item {
 
         onPositionChanged: {
             let sectorNumber = Helper.getSectorNumber(parent.width / 2, parent.height / 2, mouse.x, mouse.y, pieSeriesId.count)
-            for (let i = 0; i < pieSeriesId.count; i++) {
+            for (var i = 0; i < pieSeriesId.count; i++) {
                 if (containsPress) {
                     pieSeriesId.at(i).exploded = sectorNumber === i
                 }
+            }
+        }
+
+        onReleased: {
+            for (var i = 0; i < pieSeriesId.count; i++) {
+                    pieSeriesId.at(i).exploded = false
             }
         }
     }
