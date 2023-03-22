@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>RoundSelector.qml</file>
+        <file>main.js</file>
     </qresource>
 </RCC>
