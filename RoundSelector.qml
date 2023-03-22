@@ -6,10 +6,13 @@ Rectangle {
     property real holeValue: 0.4
 
     ChartView {
-
         anchors.fill: parent
         legend.visible: false
         antialiasing: true
+
+        animationDuration: 500
+        animationEasingCurve: Easing.Linear
+        animationOptions: ChartView.AllAnimations
 
         PieSeries {
             id: pieSeriesId
