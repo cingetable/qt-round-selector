@@ -9,7 +9,6 @@ Window {
     height: 480
     visible: true
     title: qsTr("Round Selector")
-
     maximumHeight: height
     maximumWidth: width
 
@@ -57,6 +56,12 @@ Window {
                         roundSelectorId.visible = !roundSelectorId.visible
                     }
                 }
+
+                Rectangle {
+                    id: rectId
+                    height: 100
+                    width: parent.width
+                }
             }
         }
 
@@ -64,6 +69,8 @@ Window {
         RoundSelector {
             id: roundSelectorId
             Layout.maximumWidth: 400
+
+            target: rectId
 
             OpacityAnimator {
                 target: roundSelectorId;

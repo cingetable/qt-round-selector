@@ -5,6 +5,8 @@ Rectangle {
     property int sectorCount: 20
     property real holeValue: 0.4
 
+    property QtObject target: null
+
     property string baseColor: "grey"
     property string selectionColor: "green"
 
@@ -48,6 +50,11 @@ Rectangle {
             for (var i = 0; i < pieSeriesId.count; i++) {
                 pieSeriesId.at(i).exploded = false
             }
+        }
+
+        onClicked: {
+            let sectorNumber = Helper.getSectorNumber(parent.width / 2, parent.height / 2, mouse.x, mouse.y, pieSeriesId.count)
+            target.color = pieSeriesId.at(sectorNumber).color
         }
     }
 
