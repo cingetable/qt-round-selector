@@ -5,6 +5,9 @@ Rectangle {
     property int sectorCount: 20
     property real holeValue: 0.4
 
+    property string baseColor: "grey"
+    property string selectionColor: "green"
+
     ChartView {
         anchors.fill: parent
         legend.visible: false
@@ -23,6 +26,7 @@ Rectangle {
         pieSeriesId.clear()
         for (let i = 0; i < sectorCount; i++) {
             pieSeriesId.append("", 100 / sectorCount)
+            pieSeriesId.at(i).color = baseColor
         }
     }
 
@@ -33,12 +37,14 @@ Rectangle {
             let sectorNumber = Helper.getSectorNumber(parent.width / 2, parent.height / 2, mouse.x, mouse.y, pieSeriesId.count)
             for (var i = 0; i < pieSeriesId.count; i++) {
                 pieSeriesId.at(i).exploded = sectorNumber === i
+                pieSeriesId.at(i).color = pieSeriesId.at(i).exploded ? selectionColor : baseColor
             }
         }
 
         onExited: {
             for (var i = 0; i < pieSeriesId.count; i++) {
                 pieSeriesId.at(i).exploded = false
+                pieSeriesId.at(i).color = baseColor
             }
         }
     }
