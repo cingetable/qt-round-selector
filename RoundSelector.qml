@@ -10,10 +10,16 @@ Rectangle {
     property string baseColor: "grey"
     property string selectionColor: "green"
 
+    property var colors: []
+
+    color: "transparent"
+
     ChartView {
         anchors.fill: parent
         legend.visible: false
         antialiasing: true
+
+        backgroundColor: "transparent"
 
         animationDuration: 500
         animationOptions: ChartView.AllAnimations
@@ -25,12 +31,12 @@ Rectangle {
     }
 
     onSectorCountChanged: {
-
         pieSeriesId.clear()
         for (let i = 0; i < sectorCount; i++) {
             pieSeriesId.append("", 100 / sectorCount)
             var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
             pieSeriesId.at(i).color = randomColor
+            colors[i] = randomColor
         }
     }
 
@@ -42,8 +48,10 @@ Rectangle {
             for (var i = 0; i < pieSeriesId.count; i++) {
                 pieSeriesId.at(i).exploded = sectorNumber === i
                 var color = pieSeriesId.at(i).color
-                pieSeriesId.at(i).color = pieSeriesId.at(i).exploded ? color : color
+                pieSeriesId.at(i).color = pieSeriesId.at(i).exploded ? Qt.darker(colors[i], 1.5) : colors[i]
             }
+
+
         }
 
         onExited: {

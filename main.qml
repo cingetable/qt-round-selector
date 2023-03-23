@@ -15,12 +15,15 @@ Window {
     minimumHeight: height
     minimumWidth: width
 
+    color: "grey"
+
     SplitView {
         anchors.fill: parent
         orientation: Qt.Horizontal
         resizing: true
 
         Rectangle {
+            id: rectId
             width: 200
             Layout.maximumWidth: 400
             color: "beige"
@@ -55,12 +58,6 @@ Window {
                     onClicked: {
                         roundSelectorId.visible = !roundSelectorId.visible
                     }
-                }
-
-                Rectangle {
-                    id: rectId
-                    height: 100
-                    width: parent.width
                 }
             }
         }
