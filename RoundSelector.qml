@@ -23,10 +23,12 @@ Rectangle {
     }
 
     onSectorCountChanged: {
+
         pieSeriesId.clear()
         for (let i = 0; i < sectorCount; i++) {
             pieSeriesId.append("", 100 / sectorCount)
-            pieSeriesId.at(i).color = baseColor
+            var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            pieSeriesId.at(i).color = randomColor
         }
     }
 
@@ -37,14 +39,14 @@ Rectangle {
             let sectorNumber = Helper.getSectorNumber(parent.width / 2, parent.height / 2, mouse.x, mouse.y, pieSeriesId.count)
             for (var i = 0; i < pieSeriesId.count; i++) {
                 pieSeriesId.at(i).exploded = sectorNumber === i
-                pieSeriesId.at(i).color = pieSeriesId.at(i).exploded ? selectionColor : baseColor
+                var color = pieSeriesId.at(i).color
+                pieSeriesId.at(i).color = pieSeriesId.at(i).exploded ? color : color
             }
         }
 
         onExited: {
             for (var i = 0; i < pieSeriesId.count; i++) {
                 pieSeriesId.at(i).exploded = false
-                pieSeriesId.at(i).color = baseColor
             }
         }
     }
