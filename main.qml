@@ -10,6 +10,12 @@ Window {
     visible: true
     title: qsTr("Round Selector")
 
+    maximumHeight: height
+    maximumWidth: width
+
+    minimumHeight: height
+    minimumWidth: width
+
     SplitView {
         anchors.fill: parent
         orientation: Qt.Horizontal
@@ -48,7 +54,7 @@ Window {
                     text: roundSelectorId.visible ? "Hide" : "Show"
 
                     onClicked: {
-                       roundSelectorId.visible = !roundSelectorId.visible
+                        roundSelectorId.visible = !roundSelectorId.visible
                     }
                 }
             }
@@ -60,19 +66,19 @@ Window {
             Layout.maximumWidth: 400
 
             OpacityAnimator {
-                   target: roundSelectorId;
-                   from: 0;
-                   to: 1;
-                   duration: 500
-                   running: roundSelectorId.visible
+                target: roundSelectorId;
+                from: 0;
+                to: 1;
+                duration: 500
+                running: roundSelectorId.visible
             }
 
             OpacityAnimator {
-                   target: roundSelectorId;
-                   from: 1;
-                   to: 0;
-                   duration: 500
-                   running: !roundSelectorId.visible
+                target: roundSelectorId;
+                from: 1;
+                to: 0;
+                duration: 500
+                running: !roundSelectorId.visible
             }
         }
     }
