@@ -10,7 +10,7 @@ Rectangle {
     property string baseColor: "grey"
     property string selectionColor: "green"
 
-    property var colors: new Array(6)
+    property var colors: Array(6)
 
     color: "transparent"
 
