@@ -11,7 +11,6 @@ Rectangle {
         antialiasing: true
 
         animationDuration: 500
-        animationEasingCurve: Easing.Linear
         animationOptions: ChartView.AllAnimations
 
         PieSeries {
@@ -29,19 +28,17 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-
+        hoverEnabled: true
         onPositionChanged: {
             let sectorNumber = Helper.getSectorNumber(parent.width / 2, parent.height / 2, mouse.x, mouse.y, pieSeriesId.count)
             for (var i = 0; i < pieSeriesId.count; i++) {
-                if (containsPress) {
-                    pieSeriesId.at(i).exploded = sectorNumber === i
-                }
+                pieSeriesId.at(i).exploded = sectorNumber === i
             }
         }
 
-        onReleased: {
+        onExited: {
             for (var i = 0; i < pieSeriesId.count; i++) {
-                    pieSeriesId.at(i).exploded = false
+                pieSeriesId.at(i).exploded = false
             }
         }
     }
